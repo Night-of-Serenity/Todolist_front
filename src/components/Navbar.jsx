@@ -16,7 +16,10 @@ export default function Navbar() {
             Home
           </NavLink>
           <NavLink className="navlink" to="/addtodo">
-            Add job
+            Add Job
+          </NavLink>
+          <NavLink style={{ display: "none" }} className="navlink" to="/updatetodo">
+            Edit Job
           </NavLink>
           <div className="navlink cursor-pointer" onClick={hldLogout}>
             Logout
