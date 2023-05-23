@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SummaryCard from "../components/SummaryCard";
 import { getJobs } from "../api/todoApi";
+import JobItem from "../components/JobItem";
 
 export default function Home() {
   const [jobs, setJobs] = useState([]);
@@ -21,12 +22,12 @@ export default function Home() {
         <SummaryCard title="On-Going Jobs" amount="12" />
         <SummaryCard title="Job done" amount="8" />
       </div>
-      <div>
-        {jobs.map((el) => (
-          <p className="p-3 bg-sky-300 m-3" key={el.id}>
-            {el.title}
-          </p>
-        ))}
+      <div className="w-2/3 mx-auto mt-5">
+        {jobs.length > 0 ? (
+          jobs.map((el) => <JobItem key={el.id} job={el} />)
+        ) : (
+          <p>No jobs found</p>
+        )}
       </div>
     </>
   );
