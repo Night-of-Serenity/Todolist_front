@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import Header from "../components/Header";
 import { useAuth } from "../contexts/AuthContext";
+import GuestHome from "../pages/GuestHome";
 
 export default function Router() {
   const { user } = useAuth();
@@ -22,7 +23,7 @@ export default function Router() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: user ? <GuestHome /> : <Home />,
         },
         {
           path: "/login",
