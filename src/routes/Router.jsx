@@ -1,10 +1,13 @@
-import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import NotFound from "../pages/NotFound";
 import Header from "../components/Header";
+import { useAuth } from "../contexts/AuthContext";
+
 export default function Router() {
+  const { user } = useAuth();
   const router = createBrowserRouter([
     {
       path: "/",
@@ -23,11 +26,11 @@ export default function Router() {
         },
         {
           path: "/login",
-          element: <Login />,
+          element: user ? <Navigate to="/" /> : <Login />,
         },
         {
           path: "/register",
-          element: <Register />,
+          element: user ? <Navigate to="/" /> : <Register />,
         },
       ],
     },

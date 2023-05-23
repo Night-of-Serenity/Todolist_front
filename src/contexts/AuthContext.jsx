@@ -20,10 +20,18 @@ export default function AuthContextProvider(props) {
       });
   }, []);
 
+  useEffect(() => {
+    console.log(!!user);
+  }, [user]);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    // console.log(!!user);
+    setUser(null);
+  };
+
   return (
-    <AuthContext.Provider value={{ user: user, setUser: setUser }}>
-      {props.children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user, setUser, logout }}>{props.children}</AuthContext.Provider>
   );
 }
 
