@@ -21,8 +21,8 @@ export default function Home() {
     <>
       <div className="flex justify-around gap-2">
         <SummaryCard title="All Jobs" amount={summary.all} />
-        <SummaryCard title="On-Going Jobs" amount={summary.done} />
-        <SummaryCard title="Job done" amount={summary.undone} />
+        <SummaryCard title="On-Going Jobs" amount={summary.undone} />
+        <SummaryCard title="Job done" amount={summary.done} />
       </div>
       <div className="w-2/3 mx-auto mt-5">
         {jobs.length > 0 ? (
