@@ -67,7 +67,7 @@ export default function Register() {
             value={input.confirmPassword}
           />
         </div>
-        <button type="submit" className="btn">
+        <button type="submit" className="btn btn-outline w-full btn-primary">
           Register
         </button>
       </form>

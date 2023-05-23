@@ -1,35 +1,33 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import SummaryCard from "../components/SummaryCard";
+import { getJobs } from "../api/todoApi";
 
 export default function Home() {
+  const [jobs, setJobs] = useState([]);
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (!token) {
+      return;
+    }
+    getJobs(token).then((rs) => {
+      console.log(rs.data);
+      setJobs(rs.data);
+    });
+  }, []);
   return (
-    <div className="flex justify-around gap-2">
-      <div className="flex-1 rounded-2xl bg-gradient-to-r from-blue-500 via-sky-400 to-sky-300 p-1 shadow-xl">
-        <div className="block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
-          <div className="mt-16">
-            <h3 className="text-lg font-bold text-gray-900 sm:text-3xl">All Jobs</h3>
-
-            <p className="mt-2 text-2xl text-gray-500">20</p>
-          </div>
-        </div>
+    <>
+      <div className="flex justify-around gap-2">
+        <SummaryCard title="All Jobs" amount="20" />
+        <SummaryCard title="On-Going Jobs" amount="12" />
+        <SummaryCard title="Job done" amount="8" />
       </div>
-      <div className="flex-1 rounded-2xl bg-gradient-to-r from-blue-500 via-sky-400 to-sky-300 p-1 shadow-xl">
-        <div className="block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
-          <div className="mt-16">
-            <h3 className="text-lg font-bold text-gray-900 sm:text-3xl">On-Going Jobs</h3>
-
-            <p className="mt-2 text-2xl text-gray-500">12</p>
-          </div>
-        </div>
+      <div>
+        {jobs.map((el) => (
+          <p className="p-3 bg-sky-300 m-3" key={el.id}>
+            {el.title}
+          </p>
+        ))}
       </div>
-      <div className="flex-1 rounded-2xl bg-gradient-to-r from-blue-500 via-sky-400 to-sky-300 p-1 shadow-xl">
-        <div className="block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
-          <div className="mt-16">
-            <h3 className="text-lg font-bold text-gray-900 sm:text-3xl">Job done</h3>
-
-            <p className="mt-2 text-2xl text-gray-500">8</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }

@@ -12,20 +12,11 @@ export default function Login() {
   const hdlSubmit = (e) => {
     e.preventDefault();
     // validation
-    // axios
-    //   .post("http://localhost:8080/auth/login", input)
     login(input)
       .then((rs) => {
-        // console.log(rs.data.token)
         localStorage.setItem("token", rs.data.token);
-        return (
-          //   axios.get("http://localhost:8080/auth/getMe", {
-          //   headers: {
-          //     Authorization: `Bearer ${rs.data.token}`,
-          //   },
-          // })
-          getme()
-        );
+        let token = localStorage.getItem("token");
+        return getme(token);
       })
       .then((rs) => {
         console.log(rs.data);

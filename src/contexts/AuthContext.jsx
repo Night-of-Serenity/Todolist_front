@@ -10,23 +10,14 @@ export default function AuthContextProvider(props) {
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (!token) return;
-    // axios.get("http://localhost:8080/auth/getMe", {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-    getme().then((rs) => {
+
+    getme(token).then((rs) => {
       setUser(rs.data);
     });
   }, []);
 
-  // useEffect(() => {
-  //   console.log(!!user);
-  // }, [user]);
-
   const logout = () => {
     localStorage.removeItem("token");
-    // console.log(!!user);
     setUser(null);
   };
 

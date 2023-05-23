@@ -23,7 +23,7 @@ export default function Router() {
       children: [
         {
           path: "/",
-          element: user ? <GuestHome /> : <Home />,
+          element: user ? <Home /> : <GuestHome />,
         },
         {
           path: "/login",
