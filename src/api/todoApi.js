@@ -25,3 +25,7 @@ export const getme = (token) => {
 export const getJobs = (token) => {
   return todoApi.get("/todos", addToken(token));
 };
+
+export const getSummary = (token) => {
+  return todoApi.get("/todos/summary", addToken(token));
+};
