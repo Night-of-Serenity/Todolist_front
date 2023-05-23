@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { register } from "../api/todoApi";
 
 export default function Register() {
   const [input, setInput] = useState({
@@ -17,11 +18,11 @@ export default function Register() {
     e.preventDefault();
     if (password !== confirmPassword) return alert("Password not match, recheck");
     console.log(input);
-    axios
-      .post("http://localhost:8080/auth/register", {
-        username: username,
-        password: password,
-      })
+    // axios.post("http://localhost:8080/auth/register", {
+    //     username: username,
+    //     password: password,
+    //   })
+    register({ username, password })
       .then((rs) => {
         console.log(rs.data);
       })

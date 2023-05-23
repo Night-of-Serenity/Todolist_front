@@ -1,5 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 import { createContext, useState, useContext, useEffect } from "react";
+import { getme } from "../api/todoApi";
 
 const AuthContext = createContext();
 
@@ -9,20 +10,19 @@ export default function AuthContextProvider(props) {
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (!token) return;
-    axios
-      .get("http://localhost:8080/auth/getMe", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((rs) => {
-        setUser(rs.data);
-      });
+    // axios.get("http://localhost:8080/auth/getMe", {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   })
+    getme().then((rs) => {
+      setUser(rs.data);
+    });
   }, []);
 
-  useEffect(() => {
-    console.log(!!user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log(!!user);
+  // }, [user]);
 
   const logout = () => {
     localStorage.removeItem("token");
